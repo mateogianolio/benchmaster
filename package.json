@@ -1,0 +1,28 @@
+{
+  "name": "benchmaster",
+  "version": "0.1.0",
+  "description": "Benchmark.js wrapper for instant benchmarking.",
+  "license": "MIT",
+  "keywords": [
+    "benchmark",
+    "benchmarking",
+    "benchmarks"
+  ],
+  "main": "main.js",
+  "author": "Mateo Gianolio",
+  "dependencies": {
+    "benchmark": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "homepage": "https://github.com/mateogianolio/benchmaster",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mateogianolio/benchmaster.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mateogianolio/benchmaster/issues"
+  }
+}
