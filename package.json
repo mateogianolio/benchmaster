@@ -1,7 +1,7 @@
 {
   "name": "benchmaster",
-  "version": "0.1.0",
-  "description": "Benchmark.js wrapper for instant benchmarking.",
+  "version": "0.2.0",
+  "description": "Benchmark.js wrapper for quick benchmarking.",
   "license": "MIT",
   "keywords": [
     "benchmark",

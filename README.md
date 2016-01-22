@@ -15,7 +15,7 @@ benchmaster = function (functions, [fill], [callback])
 - `functions`
   - function(s) to benchmark
 - `[fill]`
-  - missing argument filler function to use
+  - argument filler function, gets called on every cycle and looks like this: `function (name, pos)`, where `name` is the name of the function and `pos` is the argument index.
 - `[callback]`
   - called with a `data` object when benchmark is done (if no callback is found the results of the benchmarks are printed to `stdout`)
 
@@ -54,7 +54,7 @@ benchmaster(
 // tan x 1,297,499 ops/sec ±1.14% (89 runs sampled)
 ```
 
-**Using custom argument "fillers"**
+**Using custom arguments**
 
 ```javascript
 // Generate arguments once before the benchmarks begin

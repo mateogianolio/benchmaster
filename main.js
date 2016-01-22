@@ -4,22 +4,38 @@
   var benchmark = require('benchmark'),
       suite;
 
+  function resolve(args) {
+    for (var i = 0; i < args.length; i++)
+      if (typeof args[i] === 'function')
+        args[i] = args[i]();
+  }
+
   module.exports = function (functions, fill, callback) {
     suite = new benchmark.Suite();
-    functions = functions instanceof Function ? [ functions ] : functions;
-    functions.forEach(function (f) {
+
+    functions = functions instanceof Function ?
+      [ functions ] :
+      functions;
+
+    functions.forEach(function (f, index) {
       var args = [],
+          name,
           i;
 
-      for (i = 0; i < f.length; i++)
-        args.push(fill ? fill() : Math.random);
+      if (f instanceof Array) {
+        name = f[0];
+        f = f[1];
+      } else
+        name = f.name && f.name !== 'bound' ? f.name : String(index);
 
-      suite.add(f.name, function () {
-        // generate new arguments every cycle
-        f(...args.map(function (argument) {
-          if (argument instanceof Function)
-            return argument();
-        }));
+      var length = f.length;
+      for (i = 0; i < length; i++)
+        args.push(fill ? fill(name, i) : Math.random);
+
+      suite.add(name, function () {
+        if (length)
+          resolve(args);
+        f.apply(null, args);
       });
     });
 
@@ -34,6 +50,6 @@
         if (callback)
           callback(data);
       })
-      .run();
+      .run({ async: true });
   };
 }());
