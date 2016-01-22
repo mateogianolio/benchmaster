@@ -5,9 +5,12 @@
       suite;
 
   function resolve(args) {
+    var out = [];
     for (var i = 0; i < args.length; i++)
       if (typeof args[i] === 'function')
-        args[i] = args[i]();
+        out[i] = args[i]();
+
+    return out;
   }
 
   module.exports = function (functions, fill, callback) {
@@ -33,9 +36,7 @@
         args.push(fill ? fill(name, i) : Math.random);
 
       suite.add(name, function () {
-        if (length)
-          resolve(args);
-        f.apply(null, args);
+        f.apply(null, length ? resolve(args) : args);
       });
     });
 
@@ -50,6 +51,6 @@
         if (callback)
           callback(data);
       })
-      .run({ async: true });
+      .run();
   };
 }());
