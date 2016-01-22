@@ -27,12 +27,12 @@ Let's start off with the simplest example:
 var bench = require('benchmaster');
 
 bench(Math.sin);
-// sin x 1,283,678 ops/sec ±1.62% (88 runs sampled)
+// sin x 8,797,665 ops/sec ±1.55% (85 runs sampled)
 
 bench([Math.sin, Math.cos, Math.tan]);
-// sin x 1,305,326 ops/sec ±1.31% (85 runs sampled)
-// cos x 1,309,873 ops/sec ±1.54% (83 runs sampled)
-// tan x 1,297,499 ops/sec ±1.14% (89 runs sampled)
+// sin x 9,136,143 ops/sec ±0.72% (89 runs sampled)
+// cos x 8,885,802 ops/sec ±0.85% (92 runs sampled)
+// tan x 7,802,008 ops/sec ±0.73% (90 runs sampled)
 ```
 
 Above examples will automatically fill all missing arguments with `Math.random()` every cycle (this is the standard behaviour).
@@ -49,9 +49,6 @@ bench(
         console.log(String(data[target]));
   }
 );
-// sin x 1,305,326 ops/sec ±1.31% (85 runs sampled)
-// cos x 1,309,873 ops/sec ±1.54% (83 runs sampled)
-// tan x 1,297,499 ops/sec ±1.14% (89 runs sampled)
 ```
 
 **Using custom arguments**
